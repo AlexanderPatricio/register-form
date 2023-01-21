@@ -12,6 +12,7 @@
         var provinces = {!! json_encode($provinces) !!};
     </script>
     <script src="{{ asset('/js/script.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('/css/styles.css') }}">
 </head>
 <body>
 
@@ -32,6 +33,12 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if(session('info'))
+            <div class="alert alert-warning">
+                {{ session('info') }}
+            </div>
+        @endif
+        <a class="btn btn-default" href="{{ route('form.ci') }}">< Inicio</a>
         <div class="row">
             <div class="col-md-12">
                 <h3>Informacion Personal</h3>
@@ -46,19 +53,20 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="codigo_dactilar">Código Dactilar:</label>
-                    <input type="text" class="form-control" id="codigo_dactilar" name="codigo_dactilar">
+                    <input type="text" class="form-control" maxlength="10" pattern="[A-Za-z0-9]*" id="codigo_dactilar" name="codigo_dactilar"
+                           oninput="this.value = this.value.toUpperCase()" onkeypress="validateCodigoD(event);" required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="nombres">Nombres y Apellidos:</label>
-                    <input type="text" class="form-control" id="nombres" name="nombres">
+                    <input type="text" class="form-control" id="nombres" name="nombres" maxlength="100" onkeypress="validateName(event);" required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="provincias">Provincia:</label>
-                    <select class="form-control provincias-select" id="provincias" name="provincias">
+                    <select class="form-control provincias-select" id="provincias" name="provincias" required>
                         <option value="" selected disabled hidden>Seleccione una Opción</option>
                         @foreach ($provinces as $key => $province)
                             @isset($province['provincia'])
@@ -79,7 +87,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="parroquias">Parroquia:</label>
-                    <select class="form-control parroquias-select" id="parroquias" name="parroquias">
+                    <select class="form-control parroquias-select" id="parroquias" name="parroquias" required>
                         <option value="" selected disabled hidden>Seleccione una Opción</option>
                     </select>
                 </div>
@@ -87,25 +95,25 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="direccion">Direccion:</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion">
+                    <input type="text" class="form-control" id="direccion" name="direccion" required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="correo">Correo electronico:</label>
-                    <input type="email" class="form-control" id="correo" name="correo">
+                    <input type="email" class="form-control" id="correo" name="correo" required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="celular">Número Celular:</label>
-                    <input type="text" class="form-control" id="celular" name="celular">
+                    <input type="text" class="form-control" id="celular" name="celular" onkeypress="validatePhone(event);" maxlength="13">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="convencional">Número Convencional:</label>
-                    <input type="text" class="form-control" id="convencional" name="convencional">
+                    <label for="convencional">Número Convencional (Opcional):</label>
+                    <input type="text" class="form-control" id="convencional" name="convencional" maxlength="15" onkeypress="validatePhone(event);">
                 </div>
             </div>
             <div class="col-md-6">
@@ -118,40 +126,22 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 cedula-conyuge-div">
                 <div class="form-group">
-                    <label for="cedula_conyuge">Nombres y Apellidos Conyuge:</label>
-                    <input type="text" class="form-control" id="cedula_conyuge" name="cedula_conyuge">
+                    <label for="cedula_conyuge">Numero Cédula Conyuge:</label>
+                    <input type="text" class="form-control" id="cedula_conyuge" name="cedula_conyuge" onkeypress="validatePhone(event);" maxlength="10">
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 nombre-conyuge-div">
                 <div class="form-group">
                     <label for="nombres_conyuge">Nombres y Apellidos Conyuge:</label>
-                    <input type="text" class="form-control" id="nombres_conyuge" name="nombres_conyuge">
+                    <input type="text" class="form-control" id="nombres_conyuge" name="nombres_conyuge" onkeypress="validateName(event);">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="numero_hijos">Numero Hijos:</label>
                     <input type="text" class="form-control" id="numero_hijos" name="numero_hijos">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="comprobante_deposito">Comprobante de deposito:</label>
-                    <input type="file" class="form-control" id="comprobante_deposito" name="comprobante_deposito">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="frontal_cedula">Foto Frontal de Cedula:</label>
-                    <input type="file" class="form-control" id="frontal_cedula" name="frontal_cedula">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="posterior_cedula">Foto Posterior de Cedula:</label>
-                    <input type="file" class="form-control" id="posterior_cedula" name="posterior_cedula">
                 </div>
             </div>
         </div>

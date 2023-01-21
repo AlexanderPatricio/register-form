@@ -31,6 +31,7 @@
             {{ session('info') }}
         </div>
     @endif
+    <a class="btn btn-default" href="{{ route('form.ci') }}">< Inicio</a>
     <div class="row">
         <div class="col-md-12">
             <h3>Informacion Personal</h3>
@@ -102,40 +103,24 @@
                 <input type="text" class="form-control" id="estado_civil" disabled value="{{ $datos->estado_civil }}">
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="cedula_conyuge">Nombres y Apellidos Conyuge:</label>
-                <input type="text" class="form-control" id="cedula_conyuge" disabled value="{{ $datos->cedula_conyuge }}">
+        @if ( $datos->estado_civil == 'Casado/a' )
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="cedula_conyuge">Nombres y Apellidos Conyuge:</label>
+                    <input type="text" class="form-control" id="cedula_conyuge" disabled value="{{ $datos->cedula_conyuge }}">
+                </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="nombres_conyuge">Nombres y Apellidos Conyuge:</label>
-                <input type="text" class="form-control" id="nombres_conyuge" disabled value="{{ $datos->nombres_conyuge }}">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombres_conyuge">Nombres y Apellidos Conyuge:</label>
+                    <input type="text" class="form-control" id="nombres_conyuge" disabled value="{{ $datos->nombres_conyuge }}">
+                </div>
             </div>
-        </div>
+        @endif
         <div class="col-md-6">
             <div class="form-group">
                 <label for="numero_hijos">Numero Hijos:</label>
                 <input type="text" class="form-control" id="numero_hijos" disabled value="{{ $datos->numero_hijos }}">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="comprobante_deposito">Comprobante de deposito:</label>
-                <input type="file" class="form-control" id="comprobante_deposito" disabled value="{{ $datos->comprobante_deposito }}">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="frontal_cedula">Foto Frontal de Cedula:</label>
-                <input type="file" class="form-control" id="frontal_cedula" disabled value="{{ $datos->frontal_cedula }}">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="posterior_cedula">Foto Posterior de Cedula:</label>
-                <input type="file" class="form-control" id="posterior_cedula" disabled value="{{ $datos->posterior_cedula }}">
             </div>
         </div>
     </div>

@@ -26,4 +26,50 @@ $( document ).ready(function() {
         let key = $(this).val();
         $(this).parent().append('<input type="hidden" value="' + provinces[selected_province]['cantones'][selected_canton]['parroquias'][key] + '" name="parroquia"/>');
     });
+
+    $('.estado_civil-select').change(function () {
+        selected_estadi_civil = $(this).val();
+        if (selected_estadi_civil == 'Casado/a') {
+            $('.cedula-conyuge-div').show();
+            $('#cedula_conyuge').attr('required', true);
+            $('.nombre-conyuge-div').show();
+            $('#nombres_conyuge').attr('required', true);
+        }
+        else {
+            $('.cedula-conyuge-div').hide();
+            $('#cedula_conyuge').attr('required', false);
+            $('.nombre-conyuge-div').hide();
+            $('#nombres_conyuge').attr('required', false);
+        }
+    });
 });
+function validateCodigoD(e) {
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+    const input = String.fromCharCode(keyCode);
+    if (!(/[A-Za-z0-9]/.test(input))) {
+        e.preventDefault();
+    }
+}
+
+function validateName(e) {
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+    const input = String.fromCharCode(keyCode);
+    if (!(/[A-Za-z ]/.test(input))) {
+        e.preventDefault();
+    }
+}
+
+function validateAddress(e) {
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+    const input = String.fromCharCode(keyCode);
+    if (!(/[A-Za-z-_. ]/.test(input))) {
+        e.preventDefault();
+    }
+}
+
+function validatePhone(e) {
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+    if (keyCode < 48 || keyCode > 57) {
+        e.preventDefault();
+    }
+}
