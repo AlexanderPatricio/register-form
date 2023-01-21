@@ -1,0 +1,11 @@
+name: register-form
+recipe: laravel
+config:
+  webroot: public
+#  composer_version: '2.1.9'
+  php: 8.1
+services:
+  myservice:
+    type: phpmyadmin
+    config:
+      config: config/config.user.inc.php
