@@ -146,7 +146,34 @@
             </div>
         </div>
         <button type="submit" class="btn btn-default">Guardar</button>
+        <br><br><br><br>
     </form>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Información</h5>
+            </div>
+            <div class="modal-body">
+                <div class="message">
+                    Felicitaciones el mensaje aqui
+                </div>
+                <div class="information">
+                    Para mayor informacion comunicarse al numero: <label class="number-label">09999999999</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

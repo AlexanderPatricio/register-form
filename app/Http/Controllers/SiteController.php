@@ -20,18 +20,18 @@ class SiteController extends Controller
 
     public function validate_ci(Request $request) {
         $datos = Datos::where('cedula', $request->cedula)->first();
-        if (!empty($datos)) {
-            return redirect()->route('form.add.data', [$request->cedula]);
+        if (!empty($datos) && !empty($datos->codigo_dactilar)) {
+            return redirect()->route('form.list.data', [$request->cedula]);
         }
         else {
-            return back()->withInput()->with('error', 'Cedula no encontrada.');
+            return back()->withInput()->with('error', 'Registro no encontrado.');
         }
     }
 
     public function list_data($cedula) {
         $datos = Datos::where('cedula', $cedula)->first();
         if (!empty($datos) && empty($datos->codigo_dactilar)) {
-            return redirect()->route('form.add.data', [$cedula])->with('info', 'Aún no se registra los datos.');
+            return redirect()->route('form.ci.query', [$cedula])->with('info', 'Aún no se registra los datos.');
         }
         if (!empty($datos)) {
             return view('form-list', compact('datos'));

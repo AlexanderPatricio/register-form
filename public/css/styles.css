@@ -2,3 +2,27 @@
 .nombre-conyuge-div {
     display: none;
 }
+
+.modal-dialog {
+    top: 25vh;
+}
+
+.modal-body {
+    font-size: 18px;
+}
+
+.modal-body .message {
+    /*font-size: 20px;*/
+}
+
+.modal-body .information {
+    /*font-weight: bold;*/
+}
+
+.modal-body .information .number-label{
+    font-weight: bold;
+}
+
+#modalError .modal-header {
+    color: red;
+}

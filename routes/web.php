@@ -22,5 +22,5 @@ Route::get("/", [SiteController::class, "index"])->name('form.ci');
 Route::post("/", [SiteController::class, "validate_ci"])->name('form.ci.query');
 
 Route::get("/data/{ci}/list", [SiteController::class, "list_data"])->name('form.list.data');
-Route::get("/data/{ci}/add", [SiteController::class, "add_data"])->name('form.add.data');
-Route::post("/data/{ci}/save", [SiteController::class, "store"])->name('form.data.store');
+//Route::get("/data/{ci}/add", [SiteController::class, "add_data"])->name('form.add.data');
+//Route::post("/data/{ci}/save", [SiteController::class, "store"])->name('form.data.store');

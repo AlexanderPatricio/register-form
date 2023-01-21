@@ -42,6 +42,12 @@ $( document ).ready(function() {
             $('#nombres_conyuge').attr('required', false);
         }
     });
+
+    if (typeof error_message !== 'undefined' && error_message == 'Registro no encontrado.') {
+        console.log(error_message);
+        $('[id*="modalError"]').modal('show');
+    }
+    $('[id*="modalInfo"]').modal('show');
 });
 function validateCodigoD(e) {
     var keyCode = (e.keyCode ? e.keyCode : e.which);
