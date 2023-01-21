@@ -108,7 +108,7 @@
         @if ( $datos->estado_civil == 'Casado/a' )
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="cedula_conyuge">Nombres y Apellidos Conyuge:</label>
+                    <label for="cedula_conyuge">Cédula Conyuge:</label>
                     <input type="text" class="form-control" id="cedula_conyuge" disabled value="{{ $datos->cedula_conyuge }}">
                 </div>
             </div>
